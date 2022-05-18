@@ -48,6 +48,14 @@ namespace AspNetCoreMvcIdentityLog.Migrations
                         .HasColumnName("Id")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("AtualizadoEm")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("AtualizadoEm");
+
+                    b.Property<DateTime>("CriadoEm")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CriadoEm");
+
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")

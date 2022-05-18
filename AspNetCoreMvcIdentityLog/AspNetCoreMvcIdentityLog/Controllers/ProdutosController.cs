@@ -84,6 +84,8 @@ namespace AspNetCoreMvcIdentityLog.Controllers
         {
             if (ModelState.IsValid)
             {
+                produto.CriadoEm = DateTime.Now;
+                produto.AtualizadoEm = DateTime.Now;
                 _context.Add(produto);
                 await _context.SaveChangesAsync();
 
@@ -92,7 +94,7 @@ namespace AspNetCoreMvcIdentityLog.Controllers
                {
                    EmailUsuario = User.Identity.Name,
                    DetalhesAuditoria = String.Concat("Cadastrou o produto: ", produto.Nome,
-                        " | Data de cadastro: ", DateTime.Now.ToLongDateString(), " - ", DateTime.Now.ToLongTimeString())
+                        " | Data de cadastro: ", DateTime.Now.ToLongDateString(), " às ", DateTime.Now.ToLongTimeString())
                });
                 await _context.SaveChangesAsync();
 
@@ -142,6 +144,7 @@ namespace AspNetCoreMvcIdentityLog.Controllers
             {
                 try
                 {
+                    produto.AtualizadoEm = DateTime.Now;
                     _context.Update(produto);
                     await _context.SaveChangesAsync();
 
@@ -150,7 +153,7 @@ namespace AspNetCoreMvcIdentityLog.Controllers
                     {
                         EmailUsuario = User.Identity.Name,
                         DetalhesAuditoria = String.Concat("Atualizou o produto: ", produto.Nome,
-                             " | Data de atualização: ", DateTime.Now.ToLongDateString(), " - ", DateTime.Now.ToLongTimeString())
+                             " | Data de atualização: ", DateTime.Now.ToLongDateString(), " às ", DateTime.Now.ToLongTimeString())
                     });
                     await _context.SaveChangesAsync();
 
@@ -212,7 +215,7 @@ namespace AspNetCoreMvcIdentityLog.Controllers
             {
                 EmailUsuario = User.Identity.Name,
                 DetalhesAuditoria = String.Concat("Excluiu o produto: ", produto.Nome,
-                     " | Data de exclusão: ", DateTime.Now.ToLongDateString(), " - ", DateTime.Now.ToLongTimeString())
+                     " | Data de exclusão: ", DateTime.Now.ToLongDateString(), " às ", DateTime.Now.ToLongTimeString())
             });
             await _context.SaveChangesAsync();
 
