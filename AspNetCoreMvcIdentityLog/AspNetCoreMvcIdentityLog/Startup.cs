@@ -4,12 +4,14 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -56,7 +58,16 @@ namespace AspNetCoreMvcIdentityLog
 
             app.UseRouting();
 
-            app.UseAuthentication();
+			// Globalização da linguagem
+			var supportedCultures = new[] { new CultureInfo("pt-BR") };
+			app.UseRequestLocalization(new RequestLocalizationOptions
+			{
+				DefaultRequestCulture = new RequestCulture("pt-BR", "pt-BR"),
+				SupportedCultures = supportedCultures,
+				SupportedUICultures = supportedCultures
+			});
+
+			app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

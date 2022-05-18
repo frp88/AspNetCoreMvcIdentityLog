@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AspNetCoreMvcIdentityLog.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220518171834_InitialCreate")]
+    [Migration("20220518183315_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -49,6 +49,14 @@ namespace AspNetCoreMvcIdentityLog.Migrations
                         .HasColumnType("int")
                         .HasColumnName("Id")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("AtualizadoEm")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("AtualizadoEm");
+
+                    b.Property<DateTime>("CriadoEm")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CriadoEm");
 
                     b.Property<string>("Nome")
                         .IsRequired()
